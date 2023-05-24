@@ -15,11 +15,7 @@ public class Movement : MonoBehaviour
     [Header("Player Animation Settings")]
     public Animator animator;
 
-    [Space]
-    [Header("Ground Checker Settings")]
     public bool isGrounded = false;
-    [Range(-5f, 5f)] public float checkGroundOffsetY = -1.8f;
-    [Range(0, 5f)] public float checkGroundRadius = 0.3f;
 
     private void Start()
     {
@@ -33,8 +29,6 @@ public class Movement : MonoBehaviour
             rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        HorizontalMove = Input.GetAxis("Horizontal") * speed;
-
         animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
 
         if (isGrounded == false)
@@ -45,23 +39,24 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("Jumping", false);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        HorizontalMove = Input.GetAxis("Horizontal") * speed;
 
         if (HorizontalMove < 0 && FacingRight)
         {
             Flip();
         }
-        else if (HorizontalMove > 0 && !FacingRight) 
+        else if (HorizontalMove > 0 && !FacingRight)
         {
             Flip();
         }
-    }
 
-    private void FixedUpdate()
-    {
         Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
-        rb.velocity = targetVelocity;
 
-        //CheckGround();
+        rb.velocity = targetVelocity;
     }
 
     private void Flip()
@@ -76,7 +71,7 @@ public class Movement : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = true;
         }
@@ -84,22 +79,7 @@ public class Movement : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
-        {
-            isGrounded = false;
-        }
-    }
-
-    private void CheckGround()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll
-            (new Vector2(transform.position.x, transform.position.y + checkGroundOffsetY), checkGroundRadius);
-
-        if (colliders.Length > 1)
-        {
-            isGrounded = true;
-        }
-        else
+        if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = false;
         }
