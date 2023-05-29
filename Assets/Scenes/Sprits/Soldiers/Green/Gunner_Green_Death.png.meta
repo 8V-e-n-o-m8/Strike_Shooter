@@ -139,7 +139,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Gunner_Green_Death_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 9
+        width: 29
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e54112384401fa40a994214688fe265
+      internalID: -76452617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 9
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75945d0aca08f864280c7e7fbc62c234
+      internalID: -375287666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 9
+        width: 26
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a777e3671845a3e4da769ddf3c3d9ebd
+      internalID: -2029988815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_3
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 9
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44faba4a6a41f1a4b8c56e28c3397e7f
+      internalID: -1793969391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_4
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 9
+        width: 30
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e95eec752f68b7d4da9a1273848919ec
+      internalID: -792254723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_5
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 8
+        width: 35
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca85cfbc3e045745be23f2dc7afbc88
+      internalID: 461611200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_6
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 8
+        width: 35
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071c016682682bb49860193e4fd24ea2
+      internalID: -1662819063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gunner_Green_Death_7
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 8
+        width: 35
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f198612fd0786c4397302f9e1ebbc96
+      internalID: 1641609119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +318,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Gunner_Green_Death_0: -76452617
+      Gunner_Green_Death_1: -375287666
+      Gunner_Green_Death_2: -2029988815
+      Gunner_Green_Death_3: -1793969391
+      Gunner_Green_Death_4: -792254723
+      Gunner_Green_Death_5: 461611200
+      Gunner_Green_Death_6: -1662819063
+      Gunner_Green_Death_7: 1641609119
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

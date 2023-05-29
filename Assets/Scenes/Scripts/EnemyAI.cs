@@ -1,16 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public Transform target; // Цель для преследования
-    public float moveSpeed = 5f; // Скорость перемещения врага
-    public float jumpForce = 5f; // Сила прыжка врага
-    public float maxJumpDistance = 2f; // Максимальная горизонтальная дистанция для прыжка
-
     private Rigidbody2D rb;
-    private bool isGrounded = false;
+    private SpriteRenderer Enemy;
+    private float HorizontalMove = 0f;
+    [SerializeField] private AIPath aIPath;
+
+    [Header("Player Movement Settings")]
+    [Range(0, 10f)] public float speed = 0.2f;
+
+    [Header("Player Animation Settings")]
+    public Animator animator;
+
+    private void Awake()
+    {
+        Enemy = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
@@ -19,36 +28,17 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (target != null)
-        {
-            // Преследование по горизонтали
-            float direction = target.position.x - transform.position.x;
+        Enemy.flipX = aIPath.desiredVelocity.x <= 0.01f;
 
-            if (direction < 0)
-                rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-            else if (direction > 0)
-                rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-
-            // Прыжок
-            if (isGrounded && Mathf.Abs(direction) <= maxJumpDistance)
-            {
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            }
-        }
+        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
     }
 
     private void FixedUpdate()
     {
-        // Обнаружение земли
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
+        HorizontalMove = Input.GetAxis("Horizontal") * speed;
 
-        if (hit.collider != null)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
+
+        rb.velocity = targetVelocity;
     }
 }
