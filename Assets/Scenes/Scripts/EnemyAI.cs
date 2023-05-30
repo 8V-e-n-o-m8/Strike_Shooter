@@ -2,23 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System.Linq;
 
 public class EnemyAI : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private SpriteRenderer Enemy;
-    private float HorizontalMove = 0f;
-    [SerializeField] private AIPath aIPath;
+    private SpriteRenderer enemySprite;
+    private float Speed = 0.2f;
+    public bool isGrounded = false;
+    private const float groundCheckRadius = 0.1f;
+
+    [SerializeField] private AIPath aiPath; // Компонент A* Pathfinding
+    [SerializeField] private Transform groundCheck; // Точка проверки земли
+    [SerializeField] private LayerMask groundLayer; // Слой земли
 
     [Header("Player Movement Settings")]
-    [Range(0, 10f)] public float speed = 0.2f;
+    [Range(0, 15f)] public float jumpForce = 5f;
 
     [Header("Player Animation Settings")]
     public Animator animator;
 
     private void Awake()
     {
-        Enemy = GetComponent<SpriteRenderer>();
+        enemySprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -28,17 +34,30 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        Enemy.flipX = aIPath.desiredVelocity.x <= 0.01f;
+        // Проверка находится ли бот на земле
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        animator.SetFloat("HorizontalMove", Mathf.Abs(HorizontalMove));
+        // Отразить спрайт в зависимости от направления движения
+        enemySprite.flipX = aiPath.desiredVelocity.x < 0;
+
+        // Обновление параметров анимации
+        animator.SetFloat("Speed", Mathf.Abs(aiPath.desiredVelocity.x));
+        animator.SetBool("Jumping", !isGrounded);
     }
 
     private void FixedUpdate()
     {
-        HorizontalMove = Input.GetAxis("Horizontal") * speed;
+        // Получение горизонтальной скорости от A* Pathfinding
+        float HorizontalMove = aiPath.desiredVelocity.x * Speed;
 
-        Vector2 targetVelocity = new Vector2(HorizontalMove * 10f, rb.velocity.y);
-
+        // Установка целевой скорости
+        Vector2 targetVelocity = new Vector2(HorizontalMove, rb.velocity.y);
         rb.velocity = targetVelocity;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // Отображение точки проверки земли в редакторе
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 }
