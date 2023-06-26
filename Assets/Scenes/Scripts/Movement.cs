@@ -6,10 +6,12 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float HorizontalMove = 0f;
+    private float speed = 0.1f;
     private bool FacingRight = true;
 
     [Header("Player Movement Settings")]
-    [Range(0, 10f)] public float speed = 0.2f;
+    [Range(0, 10f)] public float walkSpeed = 0.1f;
+    [Range(0, 10f)] public float runSpeed = 0.2f;
     [Range(0, 15f)] public float jumpForce = 5f;
 
     [Header("Player Animation Settings")]
@@ -39,6 +41,19 @@ public class Movement : MonoBehaviour
         {
             animator.SetBool("Jumping", false);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            // Нажата клавиша Shift, переключаемся на состояние "Running"
+            animator.SetBool("Running", true);
+            speed = runSpeed;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            // Отпущена клавиша Shift, переключаемся на состояние "Walking"
+            animator.SetBool("Running", false);
+            speed = walkSpeed;
+        }
     }
 
     private void FixedUpdate()
@@ -65,7 +80,7 @@ public class Movement : MonoBehaviour
 
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
-        
+
         transform.localScale = theScale;
     }
 
